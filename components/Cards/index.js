@@ -41,8 +41,15 @@ const createArticle = (array) => {
     author.append(imgHold);
     imgHold.append(aImg, aName);
 
-    headline1.textContent = `${array.headline}` 
-   
+    array.map(text =>{
+        artArr.push(text)
+
+    }) 
+    artArr.forEach(info =>{   
+    headline1.textContent = `${info.headline}` 
+    aImg.src = `${info.authorPhoto}`
+    aName.textContent = `By ${info.authorName}`
+   })
 
     return card;
 }
@@ -51,14 +58,11 @@ const ep = document.querySelector('.cards-container')
 axios
   .get('https://lambda-times-backend.herokuapp.com/articles')
   .then(response => {
-    console.log(response.data.articles.bootstrap);
-    const newCard1 = createArticle(response.data.articles.bootstrap);
+    console.log(response.data.articles.javascript,response. data.articles.bootstrap, response. data.articles.technology, response. data.articles.jquery, response. data.articles.node)
+    const newCard1 = createArticle(response.data.articles.javascript,response. data.articles.bootstrap, response. data.articles.technology, response. data.articles.jquery, response. data.articles.node);
     ep.append(newCard1);
   })
   .catch(err => {
     console.log('Sorry No Info!', err)
   }); 
-  /*  const newArray = (response.data.articles).map( abc => {
-      artArr.push(abc.forEach())
-console.log (artArr)
-  }) */
+  
