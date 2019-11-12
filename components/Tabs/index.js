@@ -26,8 +26,12 @@ axios
   .get('https://lambda-times-backend.herokuapp.com/topics')
   .then(response => {
     /* console.log(response.data.topics); */
-    const newCard = tabCreator(response.data.topics);
+  const arr = response.data.topics;
+
+    arr.forEach(item =>{
+    const newCard = tabCreator(item);
     entry.append(newCard);
+  })
   })
   .catch(err => {
     console.log('Sorry No Info!', err)
